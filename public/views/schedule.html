@@ -1,0 +1,86 @@
+<div class="container partial" ng-init="init()">
+
+  <div class="col-xs-12 profile">
+
+    <div class="col-sm-3 col-xs-6">
+      <img class="profile-pic" src='./images/GiladSmile.jpg'/>
+    </div>
+    <div class="col-sm-9 col-xs-6 outlined details">
+      <div class="col-md-6 hidden-sm hidden-xs">
+        <span class="summary">
+          <p><b>Name:</b> Gilad Naamani</p>
+          <p><b>Job Title:</b> Software Engineer</p>
+          <p><b>Company:</b> Cisco Systems</p>
+          <p><b>Annual Salary:</b> $$$$$$</p>
+          <label class="btn btn-default btn-file">
+            Browse <input type="file" style="display: none;">
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-6 col-xs-12 spend">
+        <p class="income-amount">$123123</p>
+        <p class="spent-amount">$2343</p>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL INSTANCE -->
+  <div>
+    <script type="text/ng-template" id="scheduleModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title}}</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="event.name" placeholder="My Event"></input>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Amount</label>
+                <div class="col-sm-10">
+                   <input type="number" class="form-control" ng-model="event.amount" placeholder="$$$"></input>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Start</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" ng-model="event.date"></input>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Interval</label>
+                <div class="col-sm-10">
+                    <select class="form-control" ng-model="event.interval">
+                      <option ng-repeat="interval in intervals">{{interval}}</option>
+                    </select>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-if="!event.id" ng-click="ok('create')">Submit</button>
+            <button class="btn btn-primary" type="button" ng-if="event.id" ng-click="ok('update')">Update</button>
+            <button class="btn btn-warning" type="button" ng-if="event.id" ng-click="ok('delete')">Delete</button>
+            <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+  </div>
+</br>
+<div class="col-sm-4 col-xs-12 outlined categories left">
+  <div class="text-center">
+      <a ng-click="open(0)" class="btn btn-outline landing-button">
+           New Category
+      </a>
+  </div>
+</div>
+  <div class="col-sm-7 col-xs-12 outlined schedule right">
+    <div class="text-center">
+        <a ng-click="open(0)" class="btn btn-outline landing-button">
+            Schedule Event
+        </a>
+    </div>
+    <div class="schedule-calendar" ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
+  </div>
+</div>

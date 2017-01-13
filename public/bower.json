@@ -1,0 +1,20 @@
+{
+  "name": "Bougie",
+  "description": "Budgetting App",
+  "version": "1.0.0",
+  "homepage": "http://localhost:3000/",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "*",
+    "angular-route": "*",
+    "angular-bootstrap":"*",
+    "bootstrap": "*",
+    "jquery": "*",
+    "ngstorage": "*",
+    "angular-jwt": "*",
+    "angular-ui-calendar": "*",
+    "angular-animate": "*",
+    "angular-nvd3" : "*"
+  }
+}

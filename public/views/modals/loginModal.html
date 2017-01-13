@@ -1,0 +1,41 @@
+<div class="outer-container">
+
+  <div class="inner-container">
+    <form name="outerForm" class="tab-form-demo">
+      <uib-tabset active="activeForm">
+        <uib-tab index="0" heading="Sign In">
+          </br>
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" required ng-model="usrObj.username"/>
+            </br>
+              <label>Password</label>
+              <input type="password" class="form-control" required ng-model="usrObj.password"/>
+            </div>
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <a ng-click="signIn()" class="btn btn-lg btn-outline landing-button">
+                    Sign in
+                </a>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Sign Up">
+          </br>
+            <div class="form-group">
+              <label>New Username</label>
+              <input type="text" class="form-control" required ng-model="usrObj.newUsername"/>
+            </br>
+              <label>New Password</label>
+              <input type="password" class="form-control" required ng-model="usrObj.newPassword"/>
+            </br>
+                <label ng-if="usrObj.newPassword">Repeat Password</label>
+                <input ng-if="usrObj.newPassword" type="password" class="form-control" ng-model="usrObj.repeatPassword"/>
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <a ng-click="signUp()" class="btn btn-lg btn-outline landing-button">
+                    Sign up
+                </a>
+            </div>
+        </uib-tab>
+      </uib-tabset>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+/*ALL*/
+/*@font-face {
+    font-family: 'Skarpal';
+    src: url('SkarpaLt.ttf');
+}
+
+header {
+  font-family: "Skarpal";
+}*/
+
+body {
+  /*padding: 50px;*/
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  background-color: #2C3E50 !important;
+}
+
+.nav-a {
+    color: white !important;
+}
+
+.nav-a:hover{
+  color: #18bc9c !important;
+}
+
+.partial{
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.cursor-hand{
+  cursor: pointer;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+.outlined{
+  border: 1px solid lightgray;
+  box-shadow: 0 0 3px lightgray;
+
+}
+/*LANDING PAGE*/
+
+.logo{
+  width: 15em !important;
+}
+
+.landing-button {
+  border: 1px solid #2C3E50 !important;
+  color: black !important;
+}
+
+.landing-button:hover {
+  background-color: #2C3E50 !important;
+  border: 1px solid black !important;
+  color: white !important;
+}
+
+/*LOGIN*/
+
+.outer-container{
+  padding-top: 10%;
+  padding-bottom: 20%;
+}
+
+.inner-container{
+  padding: 10%;
+}
+
+/*SCHEDULE*/
+.profile{
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-pic{
+  width: 100%;
+  border-radius: 50%;
+  padding: 5%;
+  margin-left: -10%;
+}
+.details{
+  padding: 1em 0em 1em 1em;
+}
+.summary{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.income-amount{
+  font-size: 4em;
+  color: green;
+}
+
+.spent-amount{
+  font-size: 4em;
+  color: red;
+}
+.categories{
+  /*margin-left: 3%;*/
+}
+
+.schedule-calendar{
+  padding-top: 7%;
+}
+
+.income {
+  background-color: green !important;
+  border-color: black !important;
+}
+
+.expense {
+  background-color: red !important;
+  border-color: black !important;
+}
+
+/* WIDGETS */
+.widget-container {
+  border: 1px solid lightgray;
+  box-shadow: 0 1px 10px 0 gray;
+  height: 500px;
+  background-color: white;
+  padding-top: 10px;
+}
+
+/* GRAPHS */
+.widget-container > .graph-control {
+  position: absolute;
+  right: 50px;
+  top: 48px;
+}
