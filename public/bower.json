@@ -15,6 +15,7 @@
     "angular-jwt": "*",
     "angular-ui-calendar": "*",
     "angular-animate": "*",
-    "angular-nvd3" : "*"
+    "angular-nvd3" : "*",
+    "underscore" : "*"
   }
 }

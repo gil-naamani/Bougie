@@ -17,6 +17,21 @@ angular.module('Bougie')
 		return $uibModal.open(opts);
 	}
 
+	service.openTagModal = function(data) {
+		scope = $rootScope.$new();
+		scope.title = (data) ? 'Edit Category' : 'Create Category'
+		scope.data = data
+		opts = {
+			scope : scope,
+			templateUrl : '../views/modals/tagModal.html',
+			controller : 'tagModalController',
+			controllerAs : 'modalController',
+			bindToController : true,
+			size: 'sm'
+		}
+		return $uibModal.open(opts);
+	}
+
 	service.openLoginModal = function() {
 		scope = $rootScope.$new();
 		opts = {

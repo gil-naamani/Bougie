@@ -14,6 +14,10 @@ var User = new mongoose.Schema({
   tags : [{
   	type : mongoose.Schema.Types.ObjectId,
   	ref: 'Tag'
+  }],
+  expenses : [{
+    type : mongoose.Schema.Types.ObjectId,
+    ref: 'Expense'
   }]
 });
 

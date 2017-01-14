@@ -3,8 +3,7 @@ var User     = mongoose.model('User');
 var Category = mongoose.model('Category');
 
 var Expense = new mongoose.Schema({
-  title: { type : String , required : true },
-  description: { type : String , required : true },
+  description: { type : String , required : false },
   amt: Number,
   timestamp: {type: Date, default: Date.now},
   user: {

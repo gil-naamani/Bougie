@@ -10,12 +10,14 @@ angular.module('Bougie')
           id : id,
           category : categoryId
         };
-        console.log(data);
         $http.put('/user/categories', data).success(success).error(error)
     },
-    removeCategory: function(id, categoryId, success, error){
-      //TODO
-        return
+    addTag: function(id, tagId, success, error) {
+        var data = {
+          id : id,
+          tag : tagId
+        };
+        $http.put('/user/tags', data).success(success).error(error)
     },
     updateAmt: function(id, amt, success, error) {
         $http.put('/user/'+id+'/'+amt, data).success(success).error(error)

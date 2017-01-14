@@ -37,6 +37,8 @@ Bougie.controller('globalController', ['$scope', '$rootScope', '$location', '$lo
       _id : undefined,
       id : undefined,
       categories : [],
+      tags : [],
+      expenses : [],
       amt : 0
     };
   };
