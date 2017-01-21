@@ -9,7 +9,7 @@ var Expense = mongoose.model('Expense')
 //****************
 
 router.get('/', function(req, res, next) {
-  Expense.find(function(err, expenses){
+  Expense.find().populate(['category', 'tag']).exec(function(err, expenses){
     if(err){
       res.send(responseObj.failure({}, err));
     }
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
 
-  Expense.findOne({_id:req.params.id},function(err, exp){
+  Expense.findOne({_id:req.params.id}).populate(['category', 'tag']).exec(function(err, exp){
     if(err){
       res.send(responseObj.failure(req.params.id, err));
     }
@@ -36,6 +36,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
 
   var expense = new Expense(req.body);
+  console.log(expense);
 
   expense.save(function(err, exp){
     if(err){
@@ -51,9 +52,15 @@ router.post('/', function(req, res, next) {
 
 router.put('/', function(req, res, next) {
 
-  var query = {_id: req.body.id},
-      update = { title: req.body.title, amt: req.body.amt, category: req.body.category, expense: req.body.expense},
-      options = { upsert: true };
+  var query = { _id: req.body.id };
+  var update = { 
+        description: req.body.description,
+        title: req.body.title, 
+        amt: req.body.amt, 
+        category: req.body.category, 
+        expense: req.body.expense
+      };
+  var options = { upsert: true };
 
   // Find the category and update
   Expense.findOneAndUpdate(query, update, options, function(err, exp) {

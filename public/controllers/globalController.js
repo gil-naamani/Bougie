@@ -7,6 +7,7 @@ Bougie.controller('globalController', ['$scope', '$rootScope', '$location', '$lo
   $scope.init = function(){
 
     if ($rootScope.token){
+      console.log(1)
       userService.read(authService.getCurrentUser(), function(res){
         $rootScope.user = res.data;
         console.log($rootScope.user);

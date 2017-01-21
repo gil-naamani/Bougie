@@ -3,7 +3,7 @@ app = angular.module('Bougie')
 app.directive('bougiePieChart', function(){
 
 	TEMPLATE = `
-	<div class="widget-container col-md-8 col-md-offset-2">
+	<div class="widget-container col-md-4 col-md-offset-2">
 		<button class="btn btn-default graph-control" ng-click="pieController.openModal()">
 	        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 	        New Category
@@ -61,8 +61,7 @@ app.controller('bougiePieController', ['$scope', 'modalService', function($scope
         	className : 'h4'
         }
     };
-
-    this.data = this.categories
+    this.data = this.categories;
 
     this.setData = function(vals){
     	this.data = vals;

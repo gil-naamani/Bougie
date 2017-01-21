@@ -8,8 +8,8 @@ angular.module('Bougie')
     read: function(data, success, error) {
         $http.get('/expense', data).success(success).error(error)
     },
-    update: function(id, data, success, error) {
-        $http.put('/expense/'+id, data).success(success).error(error)
+    update: function(data, success, error) {
+        $http.put('/expense', data).success(success).error(error)
     },
     delete: function(id, success, error){
         $http.delete('/expense/'+id, data).success(success).error(error)

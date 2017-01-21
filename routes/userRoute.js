@@ -10,7 +10,12 @@ var User = mongoose.model('User');
 //****************
 
 router.get('/', function(req, res, next) {
-  User.find().populate(['categories', 'tags', 'expenses']).exec(function(err, users){
+  User.find().populate([
+    'categories',
+    'tags',
+    {path: 'expenses', populate: {path: 'category', model: 'Category'}},
+    {path: 'expenses', populate: {path: 'tag', model: 'Tag'}}
+  ]).exec(function(err, users){
     if(err){
       res.send(responseObj.failure({}, err));
     }
@@ -20,7 +25,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:usr', function(req, res, next) {
-  User.findOne({username:req.params.usr}).populate(['categories', 'tags', 'expenses']).exec(function(err, user){
+  User.findOne({username:req.params.usr}).populate([
+    'categories',
+    'tags',
+    {path: 'expenses', populate: {path: 'category', model: 'Category'}},
+    {path: 'expenses', populate: {path: 'tag', model: 'Tag'}}
+  ]).exec(function(err, user){
     if(err){
       res.send(responseObj.failure(user, err));
     }
@@ -75,7 +85,12 @@ router.put('/', function(req, res, next) {
               responseObj.failure({}, err);
             }
 
-            User.findOne({_id : user._id}).populate(['categories', 'tags', 'expenses']).exec(function(err, user){
+            User.findOne({_id : user._id}).populate([
+              'categories',
+              'tags',
+              {path: 'expenses', populate: {path: 'category', model: 'Category'}},
+              {path: 'expenses', populate: {path: 'tag', model: 'Tag'}}
+            ]).exec(function(err, user){
               res.send(responseObj.success(user));
             });
           });
@@ -102,7 +117,12 @@ router.put('/categories', function(req, res, next) {
         responseObj.failure({}, err);
       }
 
-      User.findOne({_id : user._id}).populate(['categories', 'tags', 'expenses']).exec(function(err, user){
+      User.findOne({_id : user._id}).populate([
+        'categories',
+        'tags',
+        {path: 'expenses', populate: {path: 'category', model: 'Category'}},
+        {path: 'expenses', populate: {path: 'tag', model: 'Tag'}}
+      ]).exec(function(err, user){
         res.send(responseObj.success(user));
       });
     });
@@ -128,7 +148,12 @@ router.put('/tags', function(req, res, next) {
         responseObj.failure({}, err);
       }
 
-      User.findOne({_id : user._id}).populate(['categories', 'tags', 'expenses']).exec(function(err, user){
+      User.findOne({_id : user._id}).populate([
+        'categories',
+        'tags',
+        {path: 'expenses', populate: {path: 'category', model: 'Category'}},
+        {path: 'expenses', populate: {path: 'tag', model: 'Tag'}}
+      ]).exec(function(err, user){
         res.send(responseObj.success(user));
       });
     });
@@ -154,7 +179,12 @@ router.put('/expenses', function(req, res, next) {
         responseObj.failure({}, err);
       }
 
-      User.findOne({_id : user._id}).populate(['categories', 'tags', 'expenses']).exec(function(err, user){
+      User.findOne({_id : user._id}).populate([
+        'categories',
+        'tags',
+        {path: 'expenses', populate: {path: 'category', model: 'Category'}},
+        {path: 'expenses', populate: {path: 'tag', model: 'Tag'}}
+      ]).exec(function(err, user){
         res.send(responseObj.success(user));
       });
     });

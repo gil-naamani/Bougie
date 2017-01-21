@@ -6,10 +6,6 @@ var Expense = new mongoose.Schema({
   description: { type : String , required : false },
   amt: Number,
   timestamp: {type: Date, default: Date.now},
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'
@@ -18,6 +14,11 @@ var Expense = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref : 'Tag'
   }
+});
+
+Expense.pre('remove', function(callback) {
+    // Cascage delete from all the docs that refered to this record
+    this.model('User').remove({ expenses: this._id }, callback);
 });
 
 mongoose.model('Expense', Expense);

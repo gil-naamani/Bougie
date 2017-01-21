@@ -5,19 +5,32 @@
     <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group">
-            <label class="col-sm-2 control-label">Title</label>
+            <label class="col-sm-2 control-label">Category</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="modalController.category.title" placeholder="Category Name"></input>
+               <select ng-model="modalController.expense.category" ng-options="category.title for category in modalController.categories"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Tag</label>
+            <div class="col-sm-10">
+               <select ng-model="modalController.expense.tag" ng-options="tag.title for tag in modalController.tags"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="modalController.expense.description" placeholder="Expense Description"></input>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Amount</label>
             <div class="col-sm-10">
-               <input type="number" class="form-control" ng-model="modalController.category.amt" placeholder="$$$"></input>
+               <input type="number" class="form-control" ng-model="modalController.expense.amt" placeholder="$$$"></input>
             </div>
           </div>
         </form>
     </div>
+
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-if="!modalController.editing" ng-click="modalController.create()">Submit</button>
         <button class="btn btn-primary" type="button" ng-if="modalController.editing" ng-click="modalController.update()">Update</button>

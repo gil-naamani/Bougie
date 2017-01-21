@@ -19,6 +19,13 @@ angular.module('Bougie')
         };
         $http.put('/user/tags', data).success(success).error(error)
     },
+    addExpense: function(id, expenseId, success, error) {
+        var data = {
+          id : id,
+          expense : expenseId
+        };
+        $http.put('/user/expenses', data).success(success).error(error)
+    },
     updateAmt: function(id, amt, success, error) {
         $http.put('/user/'+id+'/'+amt, data).success(success).error(error)
     }

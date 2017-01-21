@@ -17,6 +17,8 @@ Bougie.controller('loginModalController', ['$rootScope', '$scope', '$location', 
     $rootScope.user['_id'] = user._id;
     $rootScope.user['categories'] = user.categories;
     $rootScope.user['amt'] = user.amt;
+    $rootScope.user['expenses'] = user.expenses;
+    $rootScope.user['tags'] = user.tags;
   };
 
   $scope.signIn = function() {
