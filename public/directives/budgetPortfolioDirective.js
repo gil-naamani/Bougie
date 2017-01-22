@@ -1,36 +1,35 @@
 app = angular.module('Bougie')
 
-app.directive('bougiePieChart', function(){
+app.directive('budgetPorfolio', function(){
 
 	TEMPLATE = `
-	<div class="widget-container col-md-4 col-md-offset-2">
-		<button class="btn btn-default graph-control" ng-click="pieController.openModal()">
+	<div class="widget-container col-md-4 col-md-offset-1">
+		<button class="btn btn-default graph-control" ng-click="portfolioController.openModal()">
 	        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 	        New Category
 	    </button>
-		<nvd3 options="pieController.options" data="pieController.data" api="api"></nvd3>
+		<nvd3 options="portfolioController.options" data="portfolioController.data" api="api"></nvd3>
 	</div>`
 
 	return {
 		restrict 		 : 'E',
 		template 		 : TEMPLATE,
-		controller 		 : 'bougiePieController',
-		controllerAs 	 : 'pieController',
+		controller 		 : 'budgetPorfolioController',
+		controllerAs 	 : 'portfolioController',
 		bindToController : true,
 		scope 			 : {
-			categories : '=',
-			click      : '&'
+			categories : '='
 		},
 		link : function(scope, element, attrs) {
 		    scope.$watch('$root.user.categories', function(newVal){
-		    	scope.pieController.setData(newVal)
+		    	scope.portfolioController.setData(newVal)
 		    }, true);
 		}
 	}
 });
 
 
-app.controller('bougiePieController', ['$scope', 'modalService', function($scope, modalService){
+app.controller('budgetPorfolioController', ['$scope', 'modalService', function($scope, modalService){
 
 	this.options = {
         chart: {

@@ -1,21 +1,21 @@
 app = angular.module('Bougie')
 
-app.directive('bougieStackedHorizontalBarChart', function(){
+app.directive('tagBreakdown', function(){
 
 	TEMPLATE = `
 	<div class="widget-container col-md-8 col-md-offset-2">
-		<button class="btn btn-default graph-control" ng-click="stackedBarController.openModal()">
+		<button class="btn btn-default graph-control" ng-click="tagBreakdownController.openModal()">
 	        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 	        New Tag
 	    </button>
-		<nvd3 options="stackedBarController.options" data="stackedBarController.data" api="api"></nvd3>
+		<nvd3 options="tagBreakdownController.options" data="tagBreakdownController.data" api="api"></nvd3>
 	</div>`
 
 	return {
 		restrict 		 : 'E',
 		template 		 : TEMPLATE,
-		controller 		 : 'bougieStackedHorizontalBarController',
-		controllerAs 	 : 'stackedBarController',
+		controller 		 : 'tagBreakdownController',
+		controllerAs 	 : 'tagBreakdownController',
 		bindToController : true,
 		scope 			 : {
 			tags       : '=',
@@ -25,17 +25,17 @@ app.directive('bougieStackedHorizontalBarChart', function(){
 		},
 		link : function(scope, element, attrs) {
 		    scope.$watch('$root.user', function(newVal){
-                scope.stackedBarController.categories = newVal.categories;
-                scope.stackedBarController.tags = newVal.tags;
-                scope.stackedBarController.expenses = newVal.expenses;
-		    	scope.stackedBarController.setData();
+                scope.tagBreakdownController.categories = newVal.categories;
+                scope.tagBreakdownController.tags = newVal.tags;
+                scope.tagBreakdownController.expenses = newVal.expenses;
+		    	scope.tagBreakdownController.setData();
 		    }, true);
 		}
 	}
 });
 
 
-app.controller('bougieStackedHorizontalBarController', ['$scope', 'modalService', function($scope, modalService){
+app.controller('tagBreakdownController', ['$scope', 'modalService', function($scope, modalService){
 
 	this.options = {
         chart: {

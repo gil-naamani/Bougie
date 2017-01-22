@@ -1,40 +1,41 @@
 app = angular.module('Bougie')
 
-app.directive('bougieStackedVerticalBarChart', function(){
+app.directive('categorySpendBreakdown', function(){
 
 	TEMPLATE = `
-	<div class="widget-container col-md-8 col-md-offset-2">
-		<button class="btn btn-default graph-control" ng-click="stackedBarController.openModal()">
+	<div class="widget-container col-md-10 col-md-offset-1">
+		<button class="btn btn-default graph-control" ng-click="spendBreakdownController.openModal()">
 	        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 	        Log Expense
 	    </button>
-		<nvd3 options="stackedBarController.options" data="stackedBarController.data" api="api"></nvd3>
+		<nvd3 options="spendBreakdownController.options" data="spendBreakdownController.data" api="api"></nvd3>
 	</div>`
 
 	return {
 		restrict 		 : 'E',
 		template 		 : TEMPLATE,
-		controller 		 : 'bougieStackedVerticalBarController',
-		controllerAs 	 : 'stackedBarController',
+		controller 		 : 'spendBreakdownController',
+		controllerAs 	 : 'spendBreakdownController',
 		bindToController : true,
 		scope 			 : {
             categories : '=',
-            expenses   : '=',
-			click      : '&'
+            expenses   : '='
 		},
 		link : function(scope, element, attrs) {
 		    scope.$watch('$root.user.expenses', function(newVal){
-		    	scope.stackedBarController.setData(newVal);
+                scope.spendBreakdownController.expenses = newVal;
+		    	scope.spendBreakdownController.setData();
 		    }, true);
             scope.$watch('$root.user.categories', function(newVal){
-                // scope.stackedBarController.updateData();
+                scope.spendBreakdownController.categories = newVal;
+                scope.spendBreakdownController.setData();
             }, true);
 		}
 	}
 });
 
 
-app.controller('bougieStackedVerticalBarController', ['$scope', 'modalService', function($scope, modalService){
+app.controller('spendBreakdownController', ['$scope', 'modalService', function($scope, modalService){
 
 	this.options = {
         chart: {
@@ -76,38 +77,38 @@ app.controller('bougieStackedVerticalBarController', ['$scope', 'modalService', 
         return str;
     }
 
-    this.setData = function(expenses){
+    this.setData = function(){
         // build map for data
         this.data = []
-        var dataMap = _.groupBy(expenses, function(expense){ return expense.category.title});
+        var dataMap = _.groupBy(this.expenses, function(expense){ return expense.category.title});
         for (var category in dataMap) {
             dataMap[category] = _.reduce(dataMap[category], function(memo, expense){ return memo + expense.amt}, 0);
         }
         // build data in proper format
         var spentSeries = {
             "key" : "Spent",
-            "values" : []
+            "values" : [],
+            "color": "#ff3333"
         };
         var remainingSeries = {
             "key" : "Remaining",
-            "values" : []
+            "values" : [],
+            "color": "#99ff99"
         };
         for (var i = 0; i < this.categories.length; i++){
             var category = this.categories[i];
-            if (dataMap[category.title]){
-                var value = dataMap[category.title];
-                var spent = {
-                    "title" : category.title,
-                    "amt"   : value
-                };
-                var remaining = {
-                    "title" : category.title,
-                    "amt"   : category.amt - value
-                }
-
-                spentSeries.values.push(spent);
-                remainingSeries.values.push(remaining);
+            var value = dataMap[category.title] || 0;
+            var spent = {
+                "title" : category.title,
+                "amt"   : value
+            };
+            var remaining = {
+                "title" : category.title,
+                "amt"   : category.amt - value
             }
+
+            spentSeries.values.push(spent);
+            remainingSeries.values.push(remaining);
         }
         this.data.push(spentSeries);
         this.data.push(remainingSeries);
@@ -117,5 +118,5 @@ app.controller('bougieStackedVerticalBarController', ['$scope', 'modalService', 
       modalService.openExpenseModal(0);
     }
 
-    this.data = this.setData(this.expenses);
+    this.setData();
 }]);
